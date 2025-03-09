@@ -1,0 +1,341 @@
+/* Basic Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #202020;
+    color: #fff;
+    overflow: hidden; /* single-screen style */
+  }
+  
+  /************************************
+   * FULLSCREEN 3D BACKGROUND
+   ************************************/
+  #bgCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* behind everything else */
+    display: block;
+  }
+  
+  /************************************
+   * RADIO BUTTONS (TOP LEFT)
+   ************************************/
+  .radio-input {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding: 4px;
+    border-radius: 10px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 999;
+    background: #2b2b2b;
+  }
+  .radio-input input {
+    display: none;
+  }
+  .radio-input .label {
+    width: 80px;
+    height: 50px;
+    background: linear-gradient(to bottom, #ff7a00, #ff4500);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.1s linear;
+    position: relative;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0px 8px 5px rgba(0, 0, 0, 0.2);
+  }
+  .radio-input .label::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 8px;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      transparent 85%,
+      rgba(255,255,255,0.1)
+    );
+    transition: all 0.1s linear;
+    z-index: -1;
+  }
+  .radio-input .text {
+    color: #111;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  /* Highlight the selected button more clearly */
+  .label:has(input[type="radio"]:checked) {
+    box-shadow: none;
+    background: linear-gradient(to bottom, #ffae00, #ff4500);
+    outline: 2px solid #fff;
+  }
+  
+  /************************************
+   * HERO SECTION (TOP CENTER)
+   ************************************/
+  .hero {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 3rem 1rem 1.5rem;
+    text-align: center;
+    z-index: 10;
+    background: linear-gradient(
+      to bottom,
+      rgba(10, 10, 10, 0.8),
+      rgba(10, 10, 10, 0)
+    );
+  }
+  .hero h1 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: #ff5300;
+    text-transform: uppercase;
+  }
+  .hero p {
+    max-width: 600px;
+    margin: 0.25rem auto;
+    line-height: 1.4;
+  }
+  .hero .cta {
+    display: inline-block;
+    margin-top: 1rem;
+    background: #ff5300;
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background 0.3s;
+  }
+  .hero .cta:hover {
+    background: #ff7433;
+  }
+  
+  /************************************
+   * INFO SECTION (BOTTOM CENTER)
+   ************************************/
+  .info-section {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 900px;
+    width: 90%;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    z-index: 10;
+  }
+  .info-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .info-section p {
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+  }
+  
+  /************************************
+   * CHATBOT (MID LEFT)
+   ************************************/
+  .chatbot-container {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translateY(-50%);
+    width: 300px;
+    max-height: 350px;
+    background: #1c1c1c;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 20;
+  }
+  .chatbot-header {
+    background: #333;
+    padding: 0.75rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  .chatbot-messages {
+    flex: 1;
+    padding: 0.5rem;
+    overflow-y: auto;
+  }
+  .message {
+    margin-bottom: 1rem;
+  }
+  .message.user {
+    text-align: right;
+  }
+  .message.bot {
+    text-align: left;
+  }
+  .message .bubble {
+    display: inline-block;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    max-width: 70%;
+  }
+  .message.user .bubble {
+    background: #ff5300;
+  }
+  .message.bot .bubble {
+    background: #444;
+  }
+  
+  .chatbot-input {
+    display: flex;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  .chatbot-input input {
+    flex: 1;
+    border: none;
+    padding: 0.75rem;
+    background: #2f2f2f;
+    color: #fff;
+  }
+  .chatbot-input button {
+    background: #ff5300;
+    border: none;
+    color: #fff;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .chatbot-input button:hover {
+    background: #ff7433;
+  }
+  
+  /************************************
+   * AUTO-ROTATE CHECKBOX / SLIDER
+   * (TOP-RIGHT CORNER)
+   ************************************/
+  .rotation-controls {
+    position: absolute;
+    top: 100px;
+    right: 10px;
+    padding: 1rem 1.5rem;
+    background: linear-gradient(
+      to bottom right,
+      rgba(40, 40, 40, 0.8),
+      rgba(70, 70, 70, 0.8)
+    );
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: #fff;
+    width: 220px;
+    z-index: 10;
+  }
+  .rotation-controls h2 {
+    margin: 0 0 0.75rem 0;
+    font-size: 1.1rem;
+  }
+  .rotation-controls .ui-row {
+    margin-bottom: 1rem;
+  }
+  
+  /* Custom Checkmark + Slider (orange) */
+  .rotation-controls .container {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+  }
+  .rotation-controls .container input {
+    position: absolute;
+    opacity: 0;
+  }
+  .rotation-controls .checkmark {
+    position: relative;
+    box-shadow: rgb(255, 84, 0) 0px 0px 0px 2px;
+    background-color: rgba(16, 16, 16, 0.5);
+    height: 20px;
+    width: 20px;
+    border-radius: 4px;
+    transition: all 0.2s ease 0s;
+  }
+  .rotation-controls .container input:checked ~ .checkmark {
+    background-color: rgba(245, 24, 24, 0.5);
+  }
+  .rotation-controls .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  .rotation-controls .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  .rotation-controls .container .checkmark:after {
+    left: 0.45em;
+    top: 0.25em;
+    width: 0.25em;
+    height: 0.5em;
+    border: solid white;
+    border-width: 0 0.15em 0.15em 0;
+    transform: rotate(45deg);
+    transition: all 500ms ease-in-out;
+  }
+  .slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 10px;
+    border-radius: 5px;
+    background: linear-gradient(45deg, #ff8a00, #ff4500);
+    outline: none;
+    opacity: 0.9;
+    transition: opacity 0.2s;
+    margin-top: 0.5rem;
+  }
+  .slider:hover {
+    opacity: 1;
+  }
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #ff5300;
+    cursor: pointer;
+    box-shadow: 0 0 5px #aaa;
+  }
+  .slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #ff5300;
+    cursor: pointer;
+    box-shadow: 0 0 5px #aaa;
+  }
+  .speed-label {
+    display: inline-block;
+    width: 100%;
+    margin-top: 0.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+  

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>TRUMP MemeCoin + AI Chatbot</title>
+    <!-- Favicon -->
+    <link rel="icon" href="trump.png" type="image/png" />
+    <!-- Link the external CSS -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- BG Canvas for 3D Scene -->
+    <canvas id="bgCanvas"></canvas>
+
+    <!-- AUDIO for song.mp3 (loop!) -->
+    <audio id="myAudio" src="song.mp3" loop></audio>
+
+    <!-- Radio Buttons (top-left) - default: "Play" checked -->
+    <div class="radio-input">
+      <label class="label">
+        <input
+          type="radio"
+          name="songControl"
+          id="radioPlay"
+          value="play"
+          checked
+        />
+        <span class="text">Play</span>
+      </label>
+      <label class="label">
+        <input
+          type="radio"
+          name="songControl"
+          id="radioStop"
+          value="stop"
+        />
+        <span class="text">Stop</span>
+      </label>
+      <label class="label">
+        <input
+          type="radio"
+          name="songControl"
+          id="radioReset"
+          value="reset"
+        />
+        <span class="text">Reset</span>
+      </label>
+    </div>
+
+    <!-- Hero (top center) -->
+    <div class="hero">
+      <h1>CA: Eac4sfzf5iAAkBxc4KQGRaFt3n7dDD7d1j81xHfhpump</h1>
+      <p><strong>Make Memecoins Great Again!</strong></p>
+      <a href="#" class="cta">Buy TRUMP Now</a>
+    </div>
+
+    <!-- Info (bottom center) -->
+    <div class="info-section">
+      <h2>Why TRUMP MemeCoin?</h2>
+      <p>Fueled by humor, speed, and the occasional tweet, TRUMP MemeCoin on Solana is pure fun.</p>
+      <p><em>Disclaimer: Not financial advice. DYOR.</em></p>
+    </div>
+
+    <!-- Chatbot (mid-left) -->
+    <div class="chatbot-container" id="chatbotContainer">
+      <div class="chatbot-header">Trump AI Chatbot</div>
+      <div class="chatbot-messages" id="chatbotMessages"></div>
+      <div class="chatbot-input">
+        <input
+          type="text"
+          id="chatbotInput"
+          placeholder="Talk to Trump..."
+        />
+        <button id="chatbotSend">Send</button>
+      </div>
+    </div>
+
+    <!-- Rotation Controls (top-right) -->
+    <div class="rotation-controls">
+      <h2>Rotation Controls</h2>
+      <div class="ui-row">
+        <label class="container">
+          <input type="checkbox" id="autoRotateCheckbox" checked />
+          <div class="checkmark"></div>
+          <span style="margin-top:2px;">Auto Rotate</span>
+        </label>
+      </div>
+      <div class="ui-row">
+        <label for="rotationSpeedSlider">Rotation Speed</label>
+        <input
+          type="range"
+          id="rotationSpeedSlider"
+          class="slider"
+          min="0"
+          max="100"
+          step="1"
+          value="10"
+        />
+        <div class="speed-label">
+          Current Speed: <span id="speedValue">10.0</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Three.js scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.140.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.140.2/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.140.2/examples/js/loaders/GLTFLoader.js"></script>
+    
+    <!-- Our external JS code -->
+    <script src="script.js"></script>
+  </body>
+</html>
